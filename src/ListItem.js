@@ -6,8 +6,10 @@ const ListItem = ({ id, text, db }) => {
 		db.collection("boards").doc(e.target.parentNode.id).delete();
 	}
 	return (
-		<li id={id} key={id}>
-			<span>{text}</span>
+		<li id={id} key={id} className="list__item">
+			<span id={"text-" + id} className="list__item__content">
+				{text}
+			</span>
 			<span
 				role="img"
 				aria-label="Remove Link btn"
@@ -16,6 +18,9 @@ const ListItem = ({ id, text, db }) => {
 			>
 				❌
 			</span>
+			<button className="copy" data-clipboard-target={"#text-" + id}>
+				Copy
+			</button>
 		</li>
 	);
 };

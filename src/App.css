@@ -33,14 +33,28 @@ ul {
 	text-align: left;
 	list-style-type: decimal;
 	/* padding: 0 1em; */
-	min-width: 150px;
+	min-width: 300px;
+	background-color: #272c34;
+	padding: 1em;
+	border-radius: 5px;
 }
-li {
-	display: flex;
+.list__item {
+	display: grid;
 	margin-bottom: 0.5em;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 50px 50px;
+	padding: 0.5em 0.75em;
+	gap: 5px;
 }
 .deleteIcon {
-	margin-left: auto;
+	text-align: center;
+}
+.copy {
+	height: fit-content;
+	text-align: center;
+}
+.deleteIcon {
+	/* margin-left: auto; */
 	cursor: pointer;
 	transform: scale(0.8);
 	transition: transform 100ms ease-in-out;
