@@ -1,15 +1,20 @@
 import React from "react";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 
-const ListItem = ({ id, text, db }) => {
+const ListItem = ({ id, text, db, uid }) => {
 	function removeLink(e) {
-		// console.log(e.target.parentNode.id);
-		db.collection("boards").doc(e.target.parentNode.id).delete();
+		db.collection("boards")
+			.doc(uid)
+			.update({
+				links: firebase.firestore.FieldValue.arrayRemove(
+					e.target.parentNode.childNodes[0].innerText
+				),
+			});
 	}
 	return (
-		<li id={id} key={id} className="list__item">
-			<span id={"text-" + id} className="list__item__content">
-				{text}
-			</span>
+		<li className="list__item">
+			<span className="list__item__content">{text}</span>
 			<span
 				role="img"
 				aria-label="Remove Link btn"

@@ -27,14 +27,20 @@
 .App-link {
 	color: #61dafb;
 }
-ul {
+#login {
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+.list {
 	width: max-content;
 	margin: 1em auto;
 	text-align: left;
 	list-style-type: decimal;
 	/* padding: 0 1em; */
 	min-width: 300px;
-	background-color: #272c34;
+	/* background-color: #272c34; */
+	background-color: rgba(0, 0, 0, 0.25);
 	padding: 1em;
 	border-radius: 5px;
 }
