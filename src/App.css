@@ -27,18 +27,36 @@
 .App-link {
 	color: #61dafb;
 }
-#login {
-	position: fixed;
-	top: 0;
-	right: 0;
+#logout {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 2em;
+}
+#logout {
+	/* margin: 2em; */
+	padding: 0.75em 1em;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	cursor: pointer;
+	/* line-height: 1px; */
+	/* font-size: 1.1rem; */
+}
+#logout:hover {
+	background-color: rgba(0, 0, 0, 0.3);
 }
 .list {
-	width: max-content;
+	width: 100%;
+	/* max-width: max-content; */
 	margin: 1em auto;
 	text-align: left;
 	list-style-type: decimal;
 	/* padding: 0 1em; */
-	min-width: 300px;
+	/* min-width: 300px; */
 	/* background-color: #272c34; */
 	background-color: rgba(0, 0, 0, 0.25);
 	padding: 1em;
@@ -46,11 +64,12 @@
 }
 .list__item {
 	display: grid;
-	margin-bottom: 0.5em;
+	padding-bottom: 1em;
 	grid-template-rows: 1fr;
 	grid-template-columns: 1fr 50px 50px;
 	padding: 0.5em 0.75em;
 	gap: 5px;
+	border-bottom: 1px solid #a29999;
 }
 .deleteIcon {
 	text-align: center;
@@ -58,6 +77,7 @@
 .copy {
 	height: fit-content;
 	text-align: center;
+	/* padding: 0.5em 0.5em; */
 }
 .deleteIcon {
 	/* margin-left: auto; */
@@ -67,6 +87,43 @@
 }
 .deleteIcon:hover {
 	transform: scale(1);
+}
+.list-container {
+	width: 100%;
+	/* max-width: 300px; */
+	margin: 0 auto;
+}
+.addLinkContainer {
+	display: flex;
+	justify-content: space-between;
+	/* max-width: 300px; */
+	width: 100%;
+	margin: 0 auto;
+	align-items: center;
+}
+.addLinkContainer > button {
+	padding: 0.5em 1em;
+	height: fit-content;
+	margin: 0 1em;
+}
+.loader {
+	margin: 0;
+}
+.header-container {
+	position: relative;
+}
+.login-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.main-content {
+	width: 100%;
+	max-width: 650px;
+	margin: 0 auto;
+}
+input {
+	color: white;
 }
 @keyframes App-logo-spin {
 	from {

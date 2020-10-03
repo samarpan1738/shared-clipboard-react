@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import { styled } from "@material-ui/core/styles";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 
-const AddLink = ({ db, user }) => {
+const AddLink = ({ user }) => {
+	const db = firebase.firestore();
 	const [newLink, setNewLink] = useState("");
 	function addLink() {
 		console.log(newLink);

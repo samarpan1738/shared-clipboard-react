@@ -2,7 +2,9 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 
-const ListItem = ({ id, text, db, uid }) => {
+const ListItem = ({ id, text, uid }) => {
+	const db = firebase.firestore();
+
 	function removeLink(e) {
 		db.collection("boards")
 			.doc(uid)

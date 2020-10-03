@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import ListItem from "./ListItem";
 import ClipboardJS from "clipboard";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 
-const List = ({ db, user }) => {
+const List = ({ user }) => {
+	const db = firebase.firestore();
 	const [docs, setDocs] = useState({
 		content: [],
 		loaded: false,
 	});
+
 	const clipboard = new ClipboardJS(".copy");
+
 	clipboard.on("success", function (e) {
 		// console.info("Action:", e.action);
 		// console.info("Text:", e.text);
@@ -29,18 +34,20 @@ const List = ({ db, user }) => {
 				.collection(`boards`)
 				.doc(user.details.uid)
 				.onSnapshot((doc) => {
-					setDocs((oldState) => {
-						// * Change the state
-						let changes = doc.data();
-						console.log(changes.links);
-						let temp = { content: changes.links, loaded: true };
+					let changes = doc.data();
+					if (!changes) {
+						db.collection("boards").doc(user.details.uid).set({
+							links: [],
+						});
+					} else {
+						setDocs((oldState) => {
+							// * Change the state
+							console.log(changes.links);
+							let temp = { content: changes.links, loaded: true };
 
-						// changes.forEach(({ type, doc }) => {
-						// 	if (type === "removed") delete temp.content[doc.id];
-						// 	else temp.content[doc.id] = doc.data();
-						// });
-						return temp;
-					});
+							return temp;
+						});
+					}
 				});
 			return () => {
 				unsubscribe();
@@ -51,14 +58,16 @@ const List = ({ db, user }) => {
 	console.log("List render count --> ", renders.current++);
 	console.log(docs.content);
 	return (
-		<div>
-			<p>{docs.loaded ? "Loaded" : "Loading..."}</p>
+		<div className="list-container">
+			{docs.loaded ? (
+				""
+			) : (
+				<div class="progress">
+					<div class="indeterminate"></div>
+				</div>
+			)}
+
 			<ul className="list">
-				{/* {Object.keys(docs.content).map((docId) => {
-					return (
-						<ListItem db={db} id={docId} text={docs.content[docId].message} />
-					);
-				})} */}
 				{docs.content.map((link) => {
 					return <ListItem db={db} text={link} uid={user.details.uid} />;
 				})}

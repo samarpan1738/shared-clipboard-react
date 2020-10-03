@@ -1,10 +1,10 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import * as firebaseui from "firebaseui";
 import * as firebase from "firebase/app";
-const Logout = () => {
+const Welcome = ({ auth }) => {
 	// * Show Firebase Auth UI & observe auth state
 	useEffect(() => {
-		const ui = new firebaseui.auth.AuthUI(firebase.auth());
+		const ui = new firebaseui.auth.AuthUI(auth);
 
 		// * Show Firebase UI
 		ui.start("#login", {
@@ -30,7 +30,16 @@ const Logout = () => {
 				firebase.auth.GithubAuthProvider.PROVIDER_ID,
 			],
 		});
+		// console.log(ui);
+		return () => {
+			ui.delete();
+		};
 	}, []);
-	return <div id="login"></div>;
+	return (
+		<div class="login-container">
+			<h1>Shared Clipboard</h1>
+			<div id="login"></div>
+		</div>
+	);
 };
-export default Logout;
+export default Welcome;
