@@ -21,4 +21,4 @@ A clipboard with realtime syncing of information like links, text snippets (or w
 
 ### Homepage
 
-![HomePage](https://raw.githubusercontent.com/samarpan1738/shared-clipboard-react/master/public/screenshots/RSC-Home-2.png)
+![HomePage](https://raw.githubusercontent.com/samarpan1738/shared-clipboard-react/master/public/screenshots/RSC-Home-3.png)
