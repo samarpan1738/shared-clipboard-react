@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
@@ -15,7 +15,7 @@ import Welcome from "./components/Welcome";
 import Home from "./components/Home";
 
 const App = () => {
-	const db = firebase.firestore();
+	// const db = firebase.firestore();
 	const auth = firebase.auth();
 	const [user, setUser] = useState({ loggedIn: false, details: {} });
 	const [authenticating, setAuthenticating] = useState(true);
@@ -54,19 +54,17 @@ const App = () => {
 			console.log("Auth ended");
 		});
 	}, []);
-	console.log(authenticating);
+	
 
 	return (
 		<div className="App">
 			<Router>
 				<Switch>
-					{authenticating ? (
-						<div class="progress loader">
-							<div class="indeterminate"></div>
-						</div>
-					) : (
-						""
-					)}
+					{authenticating &&
+						(<div className="progress loader">
+							<div className="indeterminate"></div>
+						</div>)
+					}
 
 					<Route exact path="/">
 						{!user.loggedIn ? <Welcome auth={auth} /> : <Redirect to="/home" />}

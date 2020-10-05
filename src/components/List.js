@@ -1,25 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import ListItem from "./ListItem";
-import ClipboardJS from "clipboard";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 
-const List = ({ user }) => {
+const List = ({ user,setOpen }) => {
 	const db = firebase.firestore();
 	const [docs, setDocs] = useState({
 		content: [],
 		loaded: false,
 	});
 
-	const clipboard = new ClipboardJS(".copy");
-
-	clipboard.on("success", function (e) {
-		// console.info("Action:", e.action);
-		// console.info("Text:", e.text);
-		// console.info("Trigger:", e.trigger);
-
-		e.clearSelection();
-	});
 	// console.log("User details --> ", uid);
 	const renders = useRef(0);
 	useEffect(() => {
@@ -56,22 +46,21 @@ const List = ({ user }) => {
 	}, [user]);
 
 	console.log("List render count --> ", renders.current++);
-	console.log(docs.content);
 	return (
 		<div className="list-container">
-			{docs.loaded ? (
-				""
-			) : (
-				<div class="progress">
-					<div class="indeterminate"></div>
+			{!docs.loaded && (
+				<div className="progress">
+					<div className="indeterminate"></div>
 				</div>
 			)}
 
-			<ul className="list">
-				{docs.content.map((link) => {
-					return <ListItem db={db} text={link} uid={user.details.uid} />;
+			{
+				docs.content.length>0 && (<ul className="list">
+				{docs.content.map((link,idx) => {
+					return <ListItem db={db} text={link} uid={user.details.uid} setOpen={setOpen} key={idx}/>;
 				})}
-			</ul>
+			</ul>)
+			}
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 const AddLink = ({ user }) => {
 	const db = firebase.firestore();
@@ -28,7 +29,8 @@ const AddLink = ({ user }) => {
 				value={newLink}
 				variant="filled"
 			/>
-			<button onClick={addLink}>Add</button>
+			<AddBoxIcon className="addIcon" onClick={addLink} fontSize="large"/>
+			{/* <button onClick={addLink}>Add</button> */}
 		</div>
 	);
 };

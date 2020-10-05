@@ -23,7 +23,7 @@ const Welcome = ({ auth }) => {
 			},
 			// Will use popup for IDP Providers sign-in flow instead of the default, redirect.
 			signInFlow: "popup",
-			signInSuccessUrl: "http://localhost:3000",
+			signInSuccessUrl: "http://localhost:3000/home",
 
 			signInOptions: [
 				// List of OAuth providers supported.
