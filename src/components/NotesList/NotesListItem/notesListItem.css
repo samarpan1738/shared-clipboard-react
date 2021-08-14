@@ -1,0 +1,108 @@
+.list__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75em 1em;
+    padding-right: 0.5em;
+    width: 250px;
+    background-color: rgb(37, 34, 34);
+    border-radius: 10px;
+    text-align: left;
+    border: 2px solid rgb(63, 63, 63);
+    cursor: pointer;
+}
+.list__item:hover {
+    background-color: rgb(53, 48, 48);
+}
+
+.list__item__content {
+    padding-bottom: 10px;
+    flex: 1;
+}
+.list__item__metadata {
+    border-top: 1px solid rgb(75, 72, 72);
+    font-size: 12px;
+    color: rgb(185, 180, 180);
+    padding-top: 8px;
+    text-align: right;
+}
+.list__item__header {
+    /* border-bottom: 2px solid rgb(75, 72, 72); */
+    /* padding-bottom: 8px; */
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list__item__header > p {
+    letter-spacing: 1px;
+    font-weight: 700;
+    width: 15ch;
+    /* height: 1ch; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.list__item__text {
+    word-wrap: break-word;
+    padding-right: 10px;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.list__item__options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    padding: 0 4px;
+}
+.icon {
+    height: 18px;
+    width: 18px;
+}
+abbr + abbr {
+    margin-left: 14px;
+}
+.icon.copy:hover {
+    color: yellow;
+}
+.icon.trash:hover {
+    color: red;
+}
+.optionsToggle {
+    display: none;
+    cursor: pointer;
+}
+.optionsMenu {
+    display: none;
+}
+.optionsToggle:checked + .optionsMenu {
+    display: block;
+}
+.optionsMenu {
+    width: 100px;
+    background-color: rgb(48, 47, 48);
+    position: absolute;
+    top: 30px;
+    right: -90px;
+    z-index: 100;
+    border-radius: 2px;
+    font-size: 14px;
+}
+.optionsMenu:checked {
+    display: block;
+}
+.optionMenuItem {
+    text-align: center;
+    padding: 10px;
+}
+.optionMenuItem + .optionMenuItem {
+    border-top: 1px solid rgb(85, 82, 82);
+}
+.optionMenuItem:hover {
+    background-color: rgb(88, 85, 87);
+}

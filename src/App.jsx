@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import * as firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import {getApp} from "firebase/app";
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 import {
 	BrowserRouter as Router,
@@ -11,13 +10,14 @@ import {
 	Redirect,
 } from "react-router-dom";
 
-import Welcome from "./components/Welcome";
-import Home from "./components/Home";
-
+import Welcome from "./components/LandingPage/LandingPage";
+import Home from "./components/Home/Home";
+import NoteEditor from "./components/NoteEditor"
 const App = () => {
-	// const db = firebase.firestore();
-	const auth = firebase.auth();
-	const [user, setUser] = useState({ loggedIn: false, details: {} });
+	const firebaseApp=getApp();
+	const auth = getAuth(firebaseApp);
+	// State
+	const [user, setUser] = useState({ loggedIn: false, details: {} ,authStatus:"LOGGED_OUT"});
 	const [authenticating, setAuthenticating] = useState(true);
 
 	// const renders = useRef(0);
@@ -27,7 +27,7 @@ const App = () => {
 	// * Observe auth state
 	useEffect(() => {
 		// * Authentication State Observer
-		auth.onAuthStateChanged((u) => {
+		onAuthStateChanged(auth,(u) => {
 			setAuthenticating(true);
 			console.log("Auth started ");
 			if (u) {
@@ -82,6 +82,9 @@ const App = () => {
 							/>
 						)}
 					</Route>
+					<Route exact path="/edit">
+						{!user.loggedIn ? <Welcome auth={auth} /> : <NoteEditor/>}
+					</Route>
 				</Switch>
 			</Router>
 
@@ -98,5 +101,9 @@ const App = () => {
 		</div>
 	);
 };
-
+const App2=()=>{
+return <>
+<h1>Snowpack</h1>
+</>
+}
 export default App;

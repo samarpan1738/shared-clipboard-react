@@ -1,0 +1,55 @@
+.Home
+{
+	display: flex;
+	height: 100%;
+    /* overflow: hidden; */
+}
+.heroSection
+{
+    flex:4;
+    padding: 10px 60px 0;
+}
+.header-container {
+    width: max-content;
+    margin-bottom: 10px;
+	margin-top: 10px;
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.new-note-btn
+{
+	background-color: rebeccapurple;
+	border-radius: 100px;
+	height: 40px;
+	font-weight: 600;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 140px;
+	margin-right: 40px;
+}
+.icon.new-note
+{
+	margin-right: 10px;
+}
+#logout {
+	box-sizing: content-box;
+	padding: 0.75em;
+	background-color: rgb(202, 47, 47);
+	border-radius: 100px;
+	cursor: pointer;
+	margin: 3rem 0 1.68rem 0;
+	height: 20px;
+	width: 20px;
+}
+#logout:hover {
+	background-color: rgba(202, 47, 47,0.8);
+}
+.main-content {
+	width: 100%;
+	/* max-width: 650px; */
+	/* margin: 0 auto; */
+}

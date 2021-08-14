@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import * as firebase from "firebase/app";
-import "firebase/firestore";
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import {getFirestore} from "firebase/firestore";
+import { getApp } from "firebase/app";
 
 const AddLink = ({ user }) => {
-	const db = firebase.firestore();
+	const firebaseApp=getApp();
+	const db = getFirestore(firebaseApp);
 	const [newLink, setNewLink] = useState("");
 	function addLink() {
 		console.log(newLink);
 		db.collection("boards")
 			.doc(user.details.uid)
 			.update({
-				links: firebase.firestore.FieldValue.arrayUnion(newLink),
+				links: db.FieldValue.arrayUnion(newLink),
 			});
 		setNewLink("");
 	}
@@ -23,7 +24,7 @@ const AddLink = ({ user }) => {
 		<div className="addLinkContainer">
 			<input
 				type="text"
-				placeholder="Add new link"
+				placeholder="Start typing ..."
 				id="inp-box"
 				onChange={handleChange}
 				value={newLink}

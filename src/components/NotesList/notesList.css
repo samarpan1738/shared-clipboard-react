@@ -1,0 +1,22 @@
+.list-container {
+    width: 100%;
+    overflow:hidden;
+    height:calc(100vh - 140px);
+    padding:10px 0;
+}
+.list {
+	width: 100%;
+	list-style-type: none;
+	border-radius: 5px;
+    /* display: grid;
+    grid-auto-rows: 10px;
+	grid-template-columns: repeat(5,auto);
+    gap:10px; */
+    overflow:auto;
+    height:calc(100vh - 210px);
+    padding-right: 10px; 
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+    justify-content: center;
+}
